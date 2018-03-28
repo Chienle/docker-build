@@ -7,6 +7,7 @@ MAINTAINER Ben Sampson <ben@myns.co>
 RUN apt-get update && \
     apt-get install -y \
     apt-transport-https \
+    lsb-release \
     ca-certificates \
     curl \
     git \
@@ -15,7 +16,7 @@ RUN apt-get update && \
     sudo
 
 ADD https://packages.sury.org/php/apt.gpg /etc/apt/trusted.gpg.d/php.gpg
-RUN echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
+RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
 RUN apt-get update && \
     apt-get install -y \
