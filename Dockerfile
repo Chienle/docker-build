@@ -17,6 +17,7 @@ RUN apt-get update && \
 
 ADD https://packages.sury.org/php/apt.gpg /etc/apt/trusted.gpg.d/php.gpg
 RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+RUN chmod 664 /etc/apt/trusted.gpg.d/php.gpg
 
 RUN apt-get update && \
     apt-get install -y \
